@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vibur&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, * {
+  cursor: default;
+  caret-color: transparent;
+}
+
+/* Keep pointer for clickable things */
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+  cursor: pointer;
+}
+input,
+textarea {
+  caret-color: auto;
+}
+
+.cedarville-font{
+  font-family: "Cedarville Cursive", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.logo-font {
+  font-family: 'Playwrite AU NSW', cursive;
+  font-weight: 400;
+}
+
+.vibur-font {
+  font-family: 'Vibur', cursive;
+  font-weight: 400;
+  font-style: normal; /* Vibur only has one weight */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-reverse {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll-reverse 20s linear infinite;
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.slide-in-up {
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-1 {
+  animation: fadeIn 0.2s linear forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.fade-in-2 {
+  animation: fadeIn 0.2s linear forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+.fade-in-3 {
+  animation: fadeIn 0.2s linear forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+@keyframes zoomInOnLoad {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-zoom {
+  animation: zoomInOnLoad 0.6s ease-in-out forwards;
+}
+
+.fade-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 80%, transparent);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+@layer utilities {
+  .animate-border {
+    background-size: 300% 300%;
+    animation: borderMove 4s ease infinite;
+  }
+
+  @keyframes borderMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+/* carousel styles */
+
+.carousel-slide {
+  filter: blur(6px);
+  transition: filter 0.5s ease;
+}
+
+.swiper-slide-active {
+  filter: blur(0);
+}
+
+
+@keyframes slowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply rotation ONLY to active slide's image */
+.swiper {
+  position: relative;
+  overflow: visible !important; /* Allow buttons outside */
+}
+
+.swiper-slide-active img {
+  animation: slowRotate 15s linear infinite;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent !important;
+  color: #f97316 !important;
+  padding: 12px;
+  z-index: 20;
+}
+
+/* Hover effect */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #f97316;
+  color: white !important;
+
+}
+
+/* Arrow style (::after) */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 16px;
+  font-weight: bold;
+  color: inherit !important;
+}
+
+/* Position the buttons farther outside */
+.swiper-button-prev {
+  left: -40px !important;
+}
+
+.swiper-button-next {
+  right: -40px !important;
+}
+
+.custom-toast {
+  background-color: #fee2e2 !important; /* light red (tailwind red-100) */
+  color: #b91c1c !important;           /* dark red (tailwind red-700) */
+  border-radius: 9999px;               /* fully rounded like a pill */
+  font-weight: 600;
+  padding: 12px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
